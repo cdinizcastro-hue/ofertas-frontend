@@ -1,142 +1,156 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>Passagens Aéreas Baratas | Ofertas Reais</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ofertas de Passagens</title>
+
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f2f2f2;
-      margin: 0;
-      padding: 20px;
-    }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    background: linear-gradient(135deg, #eef2f7, #f9fbfd);
+    margin: 0;
+    padding: 20px;
+  }
 
-    header {
-      text-align: center;
-      margin-bottom: 30px;
-    }
+  h1 {
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
 
-    header h1 {
-      color: #222;
-      margin-bottom: 10px;
-    }
+  .container {
+    max-width: 960px;
+    margin: auto;
+  }
 
-    header p {
-      color: #555;
-      font-size: 16px;
-    }
+  .aviso {
+    font-size: 13px;
+    color: #555;
+    margin-bottom: 10px;
+    text-align: center;
+  }
 
-    .container {
-      max-width: 900px;
-      margin: auto;
-    }
+  .card {
+    background: white;
+    padding: 18px;
+    border-radius: 12px;
+    margin-bottom: 18px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
 
-    .card {
-      background: white;
-      border-radius: 10px;
-      padding: 20px;
-      margin-bottom: 20px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-    }
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+  }
 
-    .info {
-      max-width: 65%;
-    }
+  .preco-antigo {
+    text-decoration: line-through;
+    color: #e53935;
+    font-size: 14px;
+    margin-top: 6px;
+  }
 
-    .info h2 {
-      margin: 0 0 8px;
-      color: #333;
-    }
+  .preco-novo {
+    color: #2e7d32;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
 
-    .info p {
-      margin: 4px 0;
-      color: #666;
-    }
+  button {
+    background: linear-gradient(135deg, #1976d2, #2196f3);
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    margin-top: 10px;
+  }
 
-    .preco {
-      text-align: right;
-    }
+  button:hover {
+    opacity: 0.9;
+  }
 
-    .preco .antigo {
-      text-decoration: line-through;
-      color: red;
-      font-size: 14px;
-    }
+  footer {
+    text-align: center;
+    font-size: 12px;
+    color: #777;
+    margin-top: 40px;
+  }
+</style>
 
-    .preco .novo {
-      color: green;
-      font-size: 22px;
-      font-weight: bold;
-    }
-
-    .preco a {
-      display: inline-block;
-      margin-top: 10px;
-      background: #007bff;
-      color: white;
-      padding: 10px 18px;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .preco a:hover {
-      background: #0056b3;
-    }
-
-    footer {
-      text-align: center;
-      font-size: 13px;
-      color: #777;
-      margin-top: 40px;
-    }
-  </style>
 </head>
+
 <body>
 
-  <header>
-    <h1>✈️ Passagens Aéreas com Até 60% OFF</h1>
-    <p>Ofertas reais atualizadas automaticamente. Clique e viaje pagando menos.</p>
-  </header>
+  <div class="container">
 
-  <div class="container" id="ofertas"></div>
+    <h1>🔥 Ofertas Reais de Passagens Aéreas 🔥</h1>
+    <p class="aviso">
+      Preços monitorados automaticamente e atualizados várias vezes ao dia.
+    </p>
 
-  <footer>
-    © 2026 Ofertas Reais • Links podem conter comissão de afiliado
-  </footer>
+    <p class="aviso">
+      ℹ️ Este site pode receber comissão ao direcionar você para parceiros oficiais.
+    </p>
+
+    <div id="ofertas"></div>
+
+    <footer>
+      © 2026 – Não vendemos passagens. Redirecionamos para sites oficiais.
+    </footer>
+
+  </div>
 
   <script>
     fetch("https://ofertas-backend.onrender.com/ofertas")
-      .then(res => res.json())
-      .then(ofertas => {
+      .then(response => response.json())
+      .then(data => {
         const container = document.getElementById("ofertas");
+        container.innerHTML = "";
 
-        ofertas.forEach(o => {
+        data.forEach(oferta => {
           const card = document.createElement("div");
           card.className = "card";
 
           card.innerHTML = `
-            <div class="info">
-              <h2>${o.origem} → ${o.destino}</h2>
-              <p>Companhia: ${o.companhia}</p>
+            <div style="margin-bottom:8px;">
+              <strong style="font-size:16px;">
+                ${oferta.origem} → ${oferta.destino}
+              </strong>
             </div>
-            <div class="preco">
-              <div class="antigo">R$ ${o.precoOriginal}</div>
-              <div class="novo">R$ ${o.precoPromocional}</div>
-              <a href="${o.link}" target="_blank">Comprar Agora</a>
+
+            <div style="font-size:13px; color:#666; margin-bottom:6px;">
+              ✈️ Companhia: ${oferta.companhia}
             </div>
+
+            <div class="preco-antigo">
+              De: R$ ${oferta.precoOriginal}
+            </div>
+
+            <div class="preco-novo">
+              Por: R$ ${oferta.precoPromocional}
+            </div>
+
+            <div style="font-size:12px; color:#d32f2f;">
+              ⏰ Oferta por tempo limitado
+            </div>
+
+            <a href="${oferta.link}" target="_blank">
+              <button>Ver preço no site oficial</button>
+            </a>
           `;
 
           container.appendChild(card);
         });
+      })
+      .catch(error => {
+        console.error("Erro ao carregar ofertas:", error);
       });
   </script>
 
 </body>
 </html>
-
