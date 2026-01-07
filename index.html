@@ -8,7 +8,7 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #f2f2f2;
+      background: #f3f3f3;
       margin: 0;
       padding: 20px;
     }
@@ -20,15 +20,15 @@
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 20px;
     }
 
     .card {
       background: #fff;
-      border-radius: 8px;
       padding: 20px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
 
     .card h2 {
@@ -37,8 +37,8 @@
     }
 
     .local {
-      color: #555;
-      margin-bottom: 10px;
+      color: #666;
+      margin-bottom: 8px;
     }
 
     .preco {
@@ -49,12 +49,11 @@
 
     .btn {
       display: inline-block;
-      text-decoration: none;
       background: #007bff;
       color: #fff;
-      padding: 10px 15px;
-      border-radius: 5px;
-      text-align: center;
+      padding: 10px 14px;
+      border-radius: 6px;
+      text-decoration: none;
     }
 
     .btn:hover {
@@ -71,11 +70,11 @@
   <script>
     fetch("https://ofertas-backend.onrender.com/ofertas")
       .then(res => res.json())
-      .then(dados => {
+      .then(ofertas => {
         const container = document.getElementById("ofertas");
         container.innerHTML = "";
 
-        dados.forEach(oferta => {
+        ofertas.forEach(oferta => {
           const card = document.createElement("div");
           card.className = "card";
 
@@ -92,7 +91,7 @@
         });
       })
       .catch(err => {
-        console.error("Erro ao carregar ofertas:", err);
+        console.error("Erro:", err);
       });
   </script>
 </body>
