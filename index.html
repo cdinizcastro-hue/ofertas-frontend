@@ -2,163 +2,99 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>Ofertas de Passagens</title>
+  <title>Ofertas de Viagem</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <style>
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-    background: linear-gradient(135deg, #eef2f7, #f9fbfd);
-    margin: 0;
-    padding: 20px;
-  }
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      margin: 0;
+      padding: 20px;
+    }
 
-  h1 {
-    text-align: center;
-    font-weight: 700;
-    margin-bottom: 8px;
-  }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
 
-  .container {
-    max-width: 960px;
-    margin: auto;
-  }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
 
-  .aviso {
-    font-size: 13px;
-    color: #555;
-    margin-bottom: 10px;
-    text-align: center;
-  }
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
 
-  .card {
-    background: white;
-    padding: 18px;
-    border-radius: 12px;
-    margin-bottom: 18px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-  }
+    .card h2 {
+      margin-top: 0;
+      font-size: 18px;
+    }
 
-  .card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 30px rgba(0,0,0,0.12);
-  }
+    .local {
+      color: #555;
+      margin-bottom: 10px;
+    }
 
-  .preco-antigo {
-    text-decoration: line-through;
-    color: #e53935;
-    font-size: 14px;
-    margin-top: 6px;
-  }
+    .preco {
+      color: green;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
 
-  .preco-novo {
-    color: #2e7d32;
-    font-size: 22px;
-    font-weight: 700;
-    margin-bottom: 6px;
-  }
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      background: #007bff;
+      color: #fff;
+      padding: 10px 15px;
+      border-radius: 5px;
+      text-align: center;
+    }
 
-  button {
-    background: linear-gradient(135deg, #1976d2, #2196f3);
-    color: white;
-    border: none;
-    padding: 12px 18px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 15px;
-    font-weight: 600;
-    margin-top: 10px;
-  }
-
-  button:hover {
-    opacity: 0.9;
-  }
-
-  footer {
-    text-align: center;
-    font-size: 12px;
-    color: #777;
-    margin-top: 40px;
-  }
-</style>
-<script data-noptimize="1" data-cfasync="false" data-wpfc-render="false">
-  (function () {
-      var script = document.createElement("script");
-      script.async = 1;
-      script.src = 'https://emrldco.com/NDg2NTY4.js?t=486568';
-      document.head.appendChild(script);
-  })();
-</script>
-
+    .btn:hover {
+      background: #0056b3;
+    }
+  </style>
 </head>
 
 <body>
+  <h1>🔥 Ofertas de Viagem</h1>
 
-  <div class="container">
-
-    <h1>🔥 Ofertas Reais de Passagens Aéreas 🔥</h1>
-    <p class="aviso">
-      Preços monitorados automaticamente e atualizados várias vezes ao dia.
-    </p>
-
-    <p class="aviso">
-      ℹ️ Este site pode receber comissão ao direcionar você para parceiros oficiais.
-    </p>
-
-    <div id="ofertas"></div>
-
-    <footer>
-      © 2026 – Não vendemos passagens. Redirecionamos para sites oficiais.
-    </footer>
-
-  </div>
+  <div class="grid" id="ofertas"></div>
 
   <script>
     fetch("https://ofertas-backend.onrender.com/ofertas")
-      .then(response => response.json())
-      .then(data => {
+      .then(res => res.json())
+      .then(dados => {
         const container = document.getElementById("ofertas");
         container.innerHTML = "";
 
-        data.forEach(oferta => {
+        dados.forEach(oferta => {
           const card = document.createElement("div");
           card.className = "card";
 
           card.innerHTML = `
-            <div style="margin-bottom:8px;">
-              <strong style="font-size:16px;">
-                ${oferta.origem} → ${oferta.destino}
-              </strong>
-            </div>
-
-            <div style="font-size:13px; color:#666; margin-bottom:6px;">
-              ✈️ Companhia: ${oferta.companhia}
-            </div>
-
-            <div class="preco-antigo">
-              De: R$ ${oferta.precoOriginal}
-            </div>
-
-            <div class="preco-novo">
-              Por: R$ ${oferta.precoPromocional}
-            </div>
-
-            <div style="font-size:12px; color:#d32f2f;">
-              ⏰ Oferta por tempo limitado
-            </div>
-
-            <a href="${oferta.link}" target="_blank">
-              <button>Ver preço no site oficial</button>
+            <h2>${oferta.titulo}</h2>
+            <div class="local">${oferta.local}</div>
+            <div class="preco">${oferta.precoEstimado}</div>
+            <a class="btn" href="${oferta.link}" target="_blank">
+              Ver no site oficial
             </a>
           `;
 
           container.appendChild(card);
         });
       })
-      .catch(error => {
-        console.error("Erro ao carregar ofertas:", error);
+      .catch(err => {
+        console.error("Erro ao carregar ofertas:", err);
       });
   </script>
-
 </body>
 </html>
+
