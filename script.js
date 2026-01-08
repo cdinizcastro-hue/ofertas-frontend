@@ -10,11 +10,16 @@ async function carregarOfertas() {
   ofertas.forEach((o, i) => {
     const imagem = `https://picsum.photos/600/400?random=${i + 1}`;
 
+    const desconto = Math.round(
+      ((o.precoAntigo - o.precoAtual) / o.precoAntigo) * 100
+    );
+
     const card = document.createElement("div");
     card.className = "card";
 
     card.innerHTML = `
       <div class="imagem-destino">
+        <span class="badge-desconto">${desconto}% OFF</span>
         <img src="${imagem}" alt="${o.destino}">
       </div>
 
