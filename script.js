@@ -1,20 +1,21 @@
 const API_URL = "https://ofertas-backend-3.onrender.com/ofertas";
-const WHATSAPP_NUMBER = "5531996988232"; // <-- TROQUE PELO SEU
-
-let ofertas = [];
-let ofertaSelecionada = null;
 
 async function carregarOfertas() {
   const res = await fetch(API_URL);
-  ofertas = await res.json();
-  renderizar(ofertas);
-}
+  const ofertas = await res.json();
 
-function renderizar(lista) {
   const container = document.getElementById("ofertas");
   container.innerHTML = "";
 
-  lista.forEach(o => {
+  ofertas.forEach(o => {
+    const msg = `
+Olá! Tenho interesse na oferta:
+${o.origem} → ${o.destino}
+Por R$ ${o.precoAtual}
+    `.trim();
+
+    const linkWhats = `https://wa.me/5531996988232?text=${encodeURIComponent(msg)}`;
+
     const card = document.createElement("div");
     card.className = "card";
 
@@ -23,73 +24,23 @@ function renderizar(lista) {
       <div class="empresa">${o.empresa}</div>
       <div class="preco-antigo">De R$ ${o.precoAntigo}</div>
       <div class="preco-novo">Por R$ ${o.precoAtual}</div>
-      <a href="${o.link}" target="_blank" class="btn-oferta">
-        Ver oferta
-      </a>
+      <a href="${linkWhats}" target="_blank">Falar no WhatsApp</a>
     `;
-
-    // 👇 CAPTURA O CLIQUE APENAS NO BOTÃO
-    card.querySelector(".btn-oferta").addEventListener("click", (e) => {
-      e.stopPropagation(); // impede conflito
-      ofertaSelecionada = o;
-      atualizarWhatsApp();
-    });
 
     container.appendChild(card);
   });
 }
 
-/* FILTROS */
-document.getElementById("origem").addEventListener("input", filtrar);
-document.getElementById("destino").addEventListener("input", filtrar);
-document.getElementById("ordenar").addEventListener("change", filtrar);
-
-function filtrar() {
-  let resultado = [...ofertas];
-
-  const origem = document.getElementById("origem").value.toLowerCase();
-  const destino = document.getElementById("destino").value.toLowerCase();
-  const ordenar = document.getElementById("ordenar").value;
-
-  if (origem) {
-    resultado = resultado.filter(o =>
-      o.origem.toLowerCase().includes(origem)
-    );
+/* POPUP */
+setTimeout(() => {
+  if (!localStorage.getItem("popupFechado")) {
+    document.getElementById("popup").style.display = "flex";
   }
+}, 4000);
 
-  if (destino) {
-    resultado = resultado.filter(o =>
-      o.destino.toLowerCase().includes(destino)
-    );
-  }
-
-  if (ordenar === "menor") {
-    resultado.sort((a, b) => a.precoAtual - b.precoAtual);
-  }
-
-  if (ordenar === "maior") {
-    resultado.sort((a, b) => b.precoAtual - a.precoAtual);
-  }
-
-  renderizar(resultado);
-}
-
-/* WHATSAPP DINÂMICO */
-function atualizarWhatsApp() {
-  if (!ofertaSelecionada) return;
-
-  const msg = `
-Olá! Tenho interesse na oferta:
-${ofertaSelecionada.origem} → ${ofertaSelecionada.destino}
-Por R$ ${ofertaSelecionada.precoAtual}
-Pode me ajudar?
-  `.trim();
-
-  const link = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
-  document.getElementById("whatsappBtn").href = link;
+function fecharPopup() {
+  document.getElementById("popup").style.display = "none";
+  localStorage.setItem("popupFechado", "true");
 }
 
 carregarOfertas();
-
-
-

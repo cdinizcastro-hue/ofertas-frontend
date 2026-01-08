@@ -2,184 +2,99 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: Arial, sans-serif;
 }
 
 body {
-  min-height: 100vh;
-  background: radial-gradient(circle at top, #1e3a8a, #020617);
+  background: #0f172a;
   color: #e5e7eb;
   padding: 40px 20px;
 }
 
 h1 {
   text-align: center;
-  font-size: 2.4rem;
   margin-bottom: 10px;
 }
 
-/* SUBTÍTULO */
 .subtitulo {
   text-align: center;
-  color: #cbd5f5;
-  margin-bottom: 30px;
-}
-
-/* FILTRO */
-.filtro-card {
-  max-width: 1200px;
-  margin: 0 auto 40px;
-  padding: 22px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 16px;
-
-  background: rgba(15, 23, 42, 0.75);
-  border-radius: 20px;
-  box-shadow:
-    0 10px 30px rgba(0, 0, 0, 0.45),
-    inset 0 0 0 1px rgba(148, 163, 184, 0.12);
-}
-
-.filtro-card input,
-.filtro-card select {
-  padding: 14px 16px;
-  border-radius: 14px;
-  border: none;
-  background: rgba(2, 6, 23, 0.8);
-  color: #e5e7eb;
-  font-size: 0.95rem;
-  outline: none;
-  box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.25);
-}
-
-.filtro-card input::placeholder {
   color: #94a3b8;
+  margin-bottom: 40px;
 }
 
-.filtro-card input:focus,
-.filtro-card select:focus {
-  box-shadow: inset 0 0 0 2px #38bdf8;
-}
-
-/* GRID DE OFERTAS */
+/* GRID */
 .grid {
   max-width: 1200px;
-  margin: 0 auto;
+  margin: auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 26px;
+  gap: 20px;
 }
 
 /* CARD */
 .card {
-  background: rgba(15, 23, 42, 0.85);
-  padding: 26px;
-  border-radius: 22px;
-  box-shadow:
-    0 15px 35px rgba(0,0,0,0.45),
-    inset 0 0 0 1px rgba(148,163,184,0.15);
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+  background: #020617;
+  padding: 24px;
+  border-radius: 18px;
 }
 
 .card h2 {
-  font-size: 1.3rem;
-  color: #e0f2fe;
+  margin-bottom: 6px;
 }
 
 .empresa {
   color: #94a3b8;
-  font-size: 0.9rem;
+  margin-bottom: 12px;
 }
 
 .preco-antigo {
   text-decoration: line-through;
   color: #f87171;
-  font-size: 0.95rem;
 }
 
 .preco-novo {
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   color: #4ade80;
   font-weight: bold;
+  margin-bottom: 14px;
 }
 
+/* BOTÃO OFERTA */
 .card a {
-  margin-top: 10px;
+  display: block;
   text-align: center;
-  padding: 14px;
-  background: linear-gradient(135deg, #2563eb, #38bdf8);
+  padding: 12px;
+  background: #2563eb;
   color: white;
-  border-radius: 14px;
+  border-radius: 10px;
   text-decoration: none;
-  font-weight: bold;
-  transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.card a:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 25px rgba(56,189,248,0.5);
-}
-
-/* BOTÃO WHATSAPP */
-.whatsapp {
-  position: fixed;
-  bottom: 22px;
-  right: 22px;
-  width: 62px;
-  height: 62px;
-  background: linear-gradient(135deg, #25d366, #128c7e);
-  color: white;
-  font-size: 30px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.45);
-  z-index: 999;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.whatsapp:hover {
-  transform: scale(1.08);
-  box-shadow: 0 15px 35px rgba(37,211,102,0.6);
-}
-
-/* BOTÃO WHATSAPP PREMIUM */
-.whatsapp {
+/* WHATSAPP FLUTUANTE */
+.whatsapp-float {
   position: fixed;
   bottom: 24px;
   right: 24px;
-  width: 64px;
-  height: 64px;
-  background: linear-gradient(135deg, #25d366, #1ebe5d);
+  width: 60px;
+  height: 60px;
+  background: #25d366;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 12px 28px rgba(37, 211, 102, 0.45);
+  box-shadow: 0 10px 30px rgba(0,0,0,.4);
   z-index: 999;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.whatsapp img {
+.whatsapp-float img {
   width: 32px;
-  height: 32px;
 }
 
-.whatsapp:hover {
-  transform: scale(1.1);
-  box-shadow: 0 18px 40px rgba(37, 211, 102, 0.65);
-}
-
-/* POPUP WHATSAPP */
+/* POPUP */
 .popup-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(2, 6, 23, 0.75);
+  background: rgba(0,0,0,.7);
   display: none;
   align-items: center;
   justify-content: center;
@@ -187,49 +102,39 @@ h1 {
 }
 
 .popup {
-  background: linear-gradient(160deg, #0f172a, #020617);
-  padding: 32px;
-  border-radius: 24px;
-  max-width: 360px;
-  width: 90%;
+  background: #020617;
+  padding: 30px;
+  border-radius: 20px;
+  max-width: 320px;
   text-align: center;
-  box-shadow: 0 25px 60px rgba(0,0,0,0.6);
-  position: relative;
 }
 
 .popup h2 {
-  color: #e0f2fe;
-  margin-bottom: 14px;
+  margin-bottom: 10px;
 }
 
 .popup p {
-  color: #cbd5f5;
-  margin-bottom: 22px;
-  font-size: 0.95rem;
+  margin-bottom: 20px;
+  color: #94a3b8;
 }
 
 .btn-popup {
   display: block;
   padding: 14px;
-  background: linear-gradient(135deg, #25d366, #1ebe5d);
+  background: #25d366;
   color: white;
-  border-radius: 14px;
-  font-weight: bold;
+  border-radius: 12px;
   text-decoration: none;
-  transition: transform 0.2s;
-}
-
-.btn-popup:hover {
-  transform: scale(1.05);
 }
 
 .fechar {
   position: absolute;
-  top: 14px;
-  right: 18px;
+  top: 20px;
+  right: 24px;
   background: none;
   border: none;
-  font-size: 26px;
+  font-size: 24px;
   color: #94a3b8;
   cursor: pointer;
 }
+

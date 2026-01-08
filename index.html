@@ -4,34 +4,6 @@
   <meta charset="UTF-8">
   <title>Ofertas de Viagem</title>
   <link rel="stylesheet" href="style.css">
-<!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '2447444438756415');
-fbq('track', 'PageView');
-</script>
-<noscript>
-<img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=SEU_PIXEL_ID_AQUI&ev=PageView&noscript=1"/>
-</noscript>
-<!-- End Meta Pixel Code -->
-<!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-ABC123XYZ"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-M23KF473F0');
-</script>
-
-
 </head>
 
 <body>
@@ -42,50 +14,36 @@ gtag('config', 'G-M23KF473F0');
     Viaje mais pagando menos. Promoções reais, atualizadas todos os dias.
   </p>
 
-  <!-- FILTRO -->
-  <div class="filtro-card">
-    <input type="text" id="origem" placeholder="Origem (ex: São Paulo)">
-    <input type="text" id="destino" placeholder="Destino (ex: Lisboa)">
-    <select id="ordenar">
-      <option value="">Ordenar por</option>
-      <option value="menor">Menor preço</option>
-      <option value="maior">Maior preço</option>
-    </select>
-  </div>
-
   <!-- OFERTAS -->
   <div id="ofertas" class="grid"></div>
 
-  <script src="script.js"></script>
+  <!-- BOTÃO WHATSAPP FLUTUANTE -->
+  <a
+    href="https://wa.me/5531999999999?text=Olá!%20Quero%20receber%20ofertas%20de%20viagem"
+    class="whatsapp-float"
+    target="_blank"
+    aria-label="WhatsApp"
+  >
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" />
+  </a>
 
-<!-- BOTÃO WHATSAPP (DINÂMICO) -->
-<a
-  href="#"
-  class="whatsapp"
-  id="whatsappBtn"
-  target="_blank"
-  aria-label="Fale conosco no WhatsApp"
->
-  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-</a>
-
-<!-- POPUP WHATSAPP -->
-<div class="popup-overlay" id="popup">
-  <div class="popup">
-    <button class="fechar" onclick="fecharPopup()">×</button>
-    <h2>Receba ofertas exclusivas ✈️</h2>
-    <p>
-      Quer receber promoções reais de passagens e viagens direto no WhatsApp?
-    </p>
-    <a
-      href="https://wa.me/5531996988232?text=Olá!%20Quero%20receber%20ofertas%20de%20viagem"
-      target="_blank"
-      class="btn-popup"
-    >
-      Quero receber no WhatsApp
-    </a>
+  <!-- POPUP WHATSAPP -->
+  <div class="popup-overlay" id="popup">
+    <div class="popup">
+      <button class="fechar" onclick="fecharPopup()">×</button>
+      <h2>Receba ofertas no WhatsApp ✈️</h2>
+      <p>Promoções reais, direto no seu celular.</p>
+      <a
+        href="https://wa.me/5531996988232?text=Olá!%20Quero%20receber%20ofertas%20de%20viagem"
+        target="_blank"
+        class="btn-popup"
+      >
+        Quero receber
+      </a>
+    </div>
   </div>
-</div>
 
+  <script src="script.js"></script>
 </body>
 </html>
+
