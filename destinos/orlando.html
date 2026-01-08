@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Passagens baratas para Orlando | Ofertas de Viagem</title>
+  <meta name="description" content="Veja ofertas reais de passagens aéreas para Orlando com até 60% de desconto. Promoções atualizadas diariamente.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-content">
+    <h1>✈️ Passagens para Orlando</h1>
+    <p>Ofertas reais para viajar a Orlando pagando menos.</p>
+  </div>
+</header>
+
+<main class="container">
+
+  <section class="texto-destino">
+    <h2>Por que viajar para Orlando?</h2>
+    <p>
+      Orlando é um dos destinos americanos mais buscados por brasileiros.
+      A magia da Disney e todos os outros parques ao seu alcance.
+    </p>
+
+    <p>
+      Aqui você encontra ofertas reais de passagens para Orlando, sempre redirecionando
+      para sites parceiros confiáveis.
+    </p>
+  </section>
+
+  <h2 class="titulo-secao">🔥 Ofertas para Orlando</h2>
+  <div id="ofertas" class="grid"></div>
+
+</main>
+
+<footer class="footer">
+  <p>
+    © 2026 Ofertas de Viagem —
+    <a href="/politica-de-privacidade.html">Política de Privacidade</a> |
+    <a href="/termos.html">Termos de Uso</a> |
+    <a href="/contato.html">Contato</a>
+  </p>
+  <p class="disclaimer">
+    Este site pode receber comissões por reservas feitas através de links afiliados.
+  </p>
+</footer>
+
+<script>
+const API_URL = "https://ofertas-backend-3.onrender.com/ofertas";
+
+async function carregarOrlando() {
+  const res = await fetch(API_URL);
+  const ofertas = await res.json();
+
+  const container = document.getElementById("ofertas");
+  container.innerHTML = "";
+
+  ofertas
+    .filter(o => o.destino.toLowerCase() === "orlando")
+    .forEach((o, i) => {
+      const imagem = `https://picsum.photos/600/400?random=${i + 20}`;
+
+      const desconto = Math.round(
+        ((o.precoAntigo - o.precoAtual) / o.precoAntigo) * 100
+      );
+
+      const card = document.createElement("div");
+      card.className = "card";
+
+      card.innerHTML = `
+        <div class="imagem-destino">
+          <span class="badge-desconto">${desconto}% OFF</span>
+          <div class="overlay-destino">
+            <span>${o.destino}</span>
+          </div>
+          <img src="${imagem}" alt="${o.destino}">
+        </div>
+
+        <div class="conteudo-card">
+          <h2>${o.origem} → ${o.destino}</h2>
+          <div class="empresa">${o.empresa}</div>
+          <div class="preco-antigo">De R$ ${o.precoAntigo}</div>
+          <div class="preco-novo">Por R$ ${o.precoAtual}</div>
+          <a href="${o.link}" target="_blank" class="btn-oferta">
+            Ver oferta
+          </a>
+        </div>
+      `;
+
+      container.appendChild(card);
+    });
+}
+
+carregarOrlando();
+</script>
+
+</body>
+</html>

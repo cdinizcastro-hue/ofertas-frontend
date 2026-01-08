@@ -278,3 +278,22 @@ body {
 .texto-destino h2 {
   margin-bottom: 10px;
 }
+
+.menu {
+  display: flex;
+  gap: 20px;
+  padding: 14px 24px;
+  background: white;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.menu a {
+  text-decoration: none;
+  font-weight: 600;
+  color: #2563eb;
+}
+
+.menu a:hover {
+  text-decoration: underline;
+}
