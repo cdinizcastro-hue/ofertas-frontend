@@ -2,46 +2,31 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Ofertas de Viagem</title>
+  <title>Ofertas de Viagem | Economize Agora</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <h1>🔥 Ofertas de Viagem 🔥</h1>
+  <header class="topo">
+    <h1>✈️ Ofertas de Viagem</h1>
+    <p>Economize de verdade em passagens e viagens.</p>
+  </header>
 
-  <p class="subtitulo">
-    Viaje mais pagando menos. Promoções reais, atualizadas todos os dias.
-  </p>
+  <main class="container">
+    <div id="ofertas" class="grid"></div>
+  </main>
 
-  <!-- OFERTAS -->
-  <div id="ofertas" class="grid"></div>
-
-  <!-- BOTÃO WHATSAPP FLUTUANTE -->
+  <!-- BOTÃO WHATSAPP FLUTUANTE (SUPORTE) -->
   <a
-    href="https://wa.me/5531999999999?text=Olá!%20Quero%20receber%20ofertas%20de%20viagem"
+    href="https://wa.me/5531996988232?text=Olá!%20Quero%20receber%20ofertas%20de%20viagem"
     class="whatsapp-float"
     target="_blank"
     aria-label="WhatsApp"
   >
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" />
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
   </a>
-
-  <!-- POPUP WHATSAPP -->
-  <div class="popup-overlay" id="popup">
-    <div class="popup">
-      <button class="fechar" onclick="fecharPopup()">×</button>
-      <h2>Receba ofertas no WhatsApp ✈️</h2>
-      <p>Promoções reais, direto no seu celular.</p>
-      <a
-        href="https://wa.me/5531996988232?text=Olá!%20Quero%20receber%20ofertas%20de%20viagem"
-        target="_blank"
-        class="btn-popup"
-      >
-        Quero receber
-      </a>
-    </div>
-  </div>
 
   <script src="script.js"></script>
 </body>
