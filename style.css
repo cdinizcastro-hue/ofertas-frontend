@@ -266,3 +266,15 @@ body {
   box-shadow: 0 4px 10px rgba(0,0,0,0.25);
   z-index: 3;
 }
+
+.texto-destino {
+  background: white;
+  padding: 24px;
+  border-radius: 16px;
+  margin-bottom: 30px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+}
+
+.texto-destino h2 {
+  margin-bottom: 10px;
+}
