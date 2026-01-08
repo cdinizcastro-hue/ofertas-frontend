@@ -87,3 +87,17 @@ Pode me ajudar?
 
 carregarOfertas();
 
+/* POPUP WHATSAPP */
+setTimeout(() => {
+  const popup = document.getElementById("popup");
+  if (popup && !localStorage.getItem("popupFechado")) {
+    popup.style.display = "flex";
+  }
+}, 5000);
+
+function fecharPopup() {
+  document.getElementById("popup").style.display = "none";
+  localStorage.setItem("popupFechado", "true");
+}
+
+

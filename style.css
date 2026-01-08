@@ -174,3 +174,62 @@ h1 {
   transform: scale(1.1);
   box-shadow: 0 18px 40px rgba(37, 211, 102, 0.65);
 }
+
+/* POPUP WHATSAPP */
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(2, 6, 23, 0.75);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.popup {
+  background: linear-gradient(160deg, #0f172a, #020617);
+  padding: 32px;
+  border-radius: 24px;
+  max-width: 360px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.6);
+  position: relative;
+}
+
+.popup h2 {
+  color: #e0f2fe;
+  margin-bottom: 14px;
+}
+
+.popup p {
+  color: #cbd5f5;
+  margin-bottom: 22px;
+  font-size: 0.95rem;
+}
+
+.btn-popup {
+  display: block;
+  padding: 14px;
+  background: linear-gradient(135deg, #25d366, #1ebe5d);
+  color: white;
+  border-radius: 14px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: transform 0.2s;
+}
+
+.btn-popup:hover {
+  transform: scale(1.05);
+}
+
+.fechar {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  background: none;
+  border: none;
+  font-size: 26px;
+  color: #94a3b8;
+  cursor: pointer;
+}
