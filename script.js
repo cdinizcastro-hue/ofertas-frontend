@@ -1,6 +1,8 @@
 const API_URL = "https://ofertas-backend-3.onrender.com/ofertas";
+const WHATSAPP_NUMBER = "5531996988232"; // <-- TROQUE PELO SEU
 
 let ofertas = [];
+let ofertaSelecionada = null;
 
 async function carregarOfertas() {
   const res = await fetch(API_URL);
@@ -23,6 +25,11 @@ function renderizar(lista) {
       <div class="preco-novo">Por R$ ${o.precoAtual}</div>
       <a href="${o.link}" target="_blank">Ver oferta</a>
     `;
+
+    card.addEventListener("click", () => {
+      ofertaSelecionada = o;
+      atualizarWhatsApp();
+    });
 
     container.appendChild(card);
   });
@@ -61,6 +68,21 @@ function filtrar() {
   }
 
   renderizar(resultado);
+}
+
+/* WHATSAPP DINÂMICO */
+function atualizarWhatsApp() {
+  if (!ofertaSelecionada) return;
+
+  const msg = `
+Olá! Tenho interesse na oferta:
+${ofertaSelecionada.origem} → ${ofertaSelecionada.destino}
+Por R$ ${ofertaSelecionada.precoAtual}
+Pode me ajudar?
+  `.trim();
+
+  const link = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+  document.getElementById("whatsappBtn").href = link;
 }
 
 carregarOfertas();
