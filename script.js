@@ -21,6 +21,27 @@ async function carregarOfertas() {
       </a>
     `;
 
+    // TRACKING DO CLIQUE
+    card.querySelector(".btn-oferta").addEventListener("click", () => {
+      // Meta Pixel
+      if (typeof fbq === "function") {
+        fbq("track", "Lead", {
+          origem: o.origem,
+          destino: o.destino,
+          preco: o.precoAtual
+        });
+      }
+
+      // Google Analytics (GA4)
+      if (typeof gtag === "function") {
+        gtag("event", "click_oferta", {
+          origem: o.origem,
+          destino: o.destino,
+          value: o.precoAtual
+        });
+      }
+    });
+
     container.appendChild(card);
   });
 }
