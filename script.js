@@ -8,39 +8,28 @@ async function carregarOfertas() {
   container.innerHTML = "";
 
   ofertas.forEach(o => {
+    const imagemDestino = `https://source.unsplash.com/featured/?${encodeURIComponent(o.destino)}`;
+
     const card = document.createElement("div");
     card.className = "card";
 
     card.innerHTML = `
-      <h2>${o.origem} → ${o.destino}</h2>
-      <div class="empresa">${o.empresa}</div>
-      <div class="preco-antigo">De R$ ${o.precoAntigo}</div>
-      <div class="preco-novo">Por R$ ${o.precoAtual}</div>
-      <a href="${o.link}" target="_blank" class="btn-oferta">
-        Ver oferta
-      </a>
+      <div class="imagem-destino" style="background-image: url('${imagemDestino}')"></div>
+
+      <div class="conteudo-card">
+        <h2>${o.origem} → ${o.destino}</h2>
+        <div class="empresa">${o.empresa}</div>
+
+        <div class="precos">
+          <div class="preco-antigo">De R$ ${o.precoAntigo}</div>
+          <div class="preco-novo">Por R$ ${o.precoAtual}</div>
+        </div>
+
+        <a href="${o.link}" target="_blank" class="btn-oferta">
+          Ver oferta
+        </a>
+      </div>
     `;
-
-    // TRACKING DO CLIQUE
-    card.querySelector(".btn-oferta").addEventListener("click", () => {
-      // Meta Pixel
-      if (typeof fbq === "function") {
-        fbq("track", "Lead", {
-          origem: o.origem,
-          destino: o.destino,
-          preco: o.precoAtual
-        });
-      }
-
-      // Google Analytics (GA4)
-      if (typeof gtag === "function") {
-        gtag("event", "click_oferta", {
-          origem: o.origem,
-          destino: o.destino,
-          value: o.precoAtual
-        });
-      }
-    });
 
     container.appendChild(card);
   });
