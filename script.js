@@ -1,58 +1,57 @@
-let todasOfertas = [];
-let ofertasFiltradas = [];
+const container = document.getElementById("ofertas");
+const filtroOrigem = document.getElementById("filtro-origem");
+const filtroDestino = document.getElementById("filtro-destino");
 
-fetch('http://localhost:3000/ofertas')
+let ofertasGlobais = [];
+
+fetch("https://ofertas-backend-3.onrender.com/ofertas")
   .then(res => res.json())
-  .then(dados => {
-    todasOfertas = dados;
-    ofertasFiltradas = dados;
-    mostrarOfertas(dados);
+  .then(ofertas => {
+    ofertasGlobais = ofertas;
+    renderizar(ofertasGlobais);
   });
 
-function mostrarOfertas(lista) {
-  const div = document.getElementById('ofertas');
-  div.innerHTML = '';
+function badgeAleatoria() {
+  const badges = ["🔥 Promoção Relâmpago", "💰 Melhor Preço", "⏰ Últimas Vagas"];
+  return badges[Math.floor(Math.random() * badges.length)];
+}
+
+function renderizar(lista) {
+  container.innerHTML = "";
+
+  if (lista.length === 0) {
+    container.innerHTML = "<p>Nenhuma oferta encontrada.</p>";
+    return;
+  }
 
   lista.forEach(oferta => {
-    div.innerHTML += `
-      <div class="card">
-        <h2>${oferta.origem} → ${oferta.destino}</h2>
-        <p class="preco-antigo">De R$ ${oferta.precoOriginal}</p>
-        <p class="preco-novo">Por R$ ${oferta.precoAtual}</p>
-        <a href="${oferta.link}" target="_blank">Comprar</a>
-      </div>
+    const card = document.createElement("div");
+    card.className = "card";
+
+    card.innerHTML = `
+      <span class="badge">${badgeAleatoria()}</span>
+      <h2>${oferta.origem} → ${oferta.destino}</h2>
+      <p class="empresa">${oferta.empresa}</p>
+      <p class="preco-antigo">De R$ ${oferta.precoAntigo}</p>
+      <p class="preco">Por R$ ${oferta.precoAtual}</p>
+      <a href="${oferta.link}" target="_blank" class="btn">Ver oferta</a>
     `;
+
+    container.appendChild(card);
   });
 }
 
-// FILTRO POR ORIGEM
-document.getElementById('filtro').addEventListener('change', (e) => {
-  const origem = e.target.value;
+function aplicarFiltro() {
+  const origem = filtroOrigem.value.toLowerCase();
+  const destino = filtroDestino.value.toLowerCase();
 
-  if (!origem) {
-    ofertasFiltradas = [...todasOfertas];
-  } else {
-    ofertasFiltradas = todasOfertas.filter(o => o.origem === origem);
-  }
+  const filtradas = ofertasGlobais.filter(o =>
+    o.origem.toLowerCase().includes(origem) &&
+    o.destino.toLowerCase().includes(destino)
+  );
 
-  aplicarOrdenacao();
-});
-
-// ORDENAÇÃO POR PREÇO
-document.getElementById('ordenacao').addEventListener('change', () => {
-  aplicarOrdenacao();
-});
-
-function aplicarOrdenacao() {
-  const tipo = document.getElementById('ordenacao').value;
-  let lista = [...ofertasFiltradas];
-
-  if (tipo === 'menor') {
-    lista.sort((a, b) => a.precoAtual - b.precoAtual);
-  } else if (tipo === 'maior') {
-    lista.sort((a, b) => b.precoAtual - a.precoAtual);
-  }
-
-  mostrarOfertas(lista);
+  renderizar(filtradas);
 }
 
+filtroOrigem.addEventListener("input", aplicarFiltro);
+filtroDestino.addEventListener("input", aplicarFiltro);

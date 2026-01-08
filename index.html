@@ -2,98 +2,32 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>Ofertas de Viagem</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f3f3f3;
-      margin: 0;
-      padding: 20px;
-    }
-
-    h1 {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 20px;
-    }
-
-    .card {
-      background: #fff;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-
-    .card h2 {
-      margin-top: 0;
-      font-size: 18px;
-    }
-
-    .local {
-      color: #666;
-      margin-bottom: 8px;
-    }
-
-    .preco {
-      color: green;
-      font-weight: bold;
-      margin-bottom: 15px;
-    }
-
-    .btn {
-      display: inline-block;
-      background: #007bff;
-      color: #fff;
-      padding: 10px 14px;
-      border-radius: 6px;
-      text-decoration: none;
-    }
-
-    .btn:hover {
-      background: #0056b3;
-    }
-  </style>
+  <title>Ofertas Imperdíveis de Viagem</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
-  <h1>🔥 Ofertas de Viagem</h1>
+  <header>
+    <h1>✈️ Ofertas Imperdíveis de Viagem</h1>
+    <p>Viaje mais pagando menos. Promoções reais, atualizadas todos os dias.</p>
+  </header>
 
-  <div class="grid" id="ofertas"></div>
+  <!-- FILTROS -->
+  <section class="filtros">
+    <input type="text" id="filtro-origem" placeholder="Origem (ex: São Paulo)">
+    <input type="text" id="filtro-destino" placeholder="Destino (ex: Lisboa)">
+  </section>
 
-  <script>
-    fetch("https://ofertas-backend.onrender.com/ofertas")
-      .then(res => res.json())
-      .then(ofertas => {
-        const container = document.getElementById("ofertas");
-        container.innerHTML = "";
+  <main>
+    <div id="ofertas" class="grid"></div>
+  </main>
 
-        ofertas.forEach(oferta => {
-          const card = document.createElement("div");
-          card.className = "card";
+  <footer>
+    <p>© 2026 — Ofertas de Viagem | Promoções sujeitas a alteração</p>
+  </footer>
 
-          card.innerHTML = `
-            <h2>${oferta.titulo}</h2>
-            <div class="local">${oferta.local}</div>
-            <div class="preco">${oferta.precoEstimado}</div>
-            <a class="btn" href="${oferta.link}" target="_blank">
-              Ver no site oficial
-            </a>
-          `;
-
-          container.appendChild(card);
-        });
-      })
-      .catch(err => {
-        console.error("Erro:", err);
-      });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
-
