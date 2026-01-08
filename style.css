@@ -246,3 +246,23 @@ body {
 .imagem-destino img {
   display: block;
 }
+
+/* OFERTA DO DIA */
+.card.destaque {
+  grid-column: span 2;
+  border: 3px solid #facc15;
+}
+
+.badge-dia {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: #facc15;
+  color: #1f2937;
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: bold;
+  border-radius: 999px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+  z-index: 3;
+}

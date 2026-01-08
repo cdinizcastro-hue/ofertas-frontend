@@ -1,3 +1,4 @@
+
 const API_URL = "https://ofertas-backend-3.onrender.com/ofertas";
 
 async function carregarOfertas() {
@@ -15,10 +16,11 @@ async function carregarOfertas() {
     );
 
     const card = document.createElement("div");
-    card.className = "card";
+    card.className = i === 0 ? "card destaque" : "card";
 
     card.innerHTML = `
       <div class="imagem-destino">
+        ${i === 0 ? `<span class="badge-dia">OFERTA DO DIA</span>` : ""}
         <span class="badge-desconto">${desconto}% OFF</span>
 
         <div class="overlay-destino">
