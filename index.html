@@ -1,37 +1,32 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <title>Ofertas Imperdíveis de Viagem</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Ofertas de Viagem</title>
   <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
-  <header>
-    <h1>✈️ Ofertas Imperdíveis de Viagem</h1>
-    <p>Viaje mais pagando menos. Promoções reais, atualizadas todos os dias.</p>
-  </header>
 
-  <!-- FILTROS -->
-  <section class="filtros">
-    <input type="text" id="filtro-origem" placeholder="Origem (ex: São Paulo)">
-    <input type="text" id="filtro-destino" placeholder="Destino (ex: Lisboa)">
+  <h1>🔥 Ofertas de Viagem 🔥</h1>
 
-    <select id="ordenacao">
-      <option value="preco">Menor preço</option>
-      <option value="desconto">Maior desconto</option>
+  <p class="subtitulo">
+    Viaje mais pagando menos. Promoções reais, atualizadas todos os dias.
+  </p>
+
+  <!-- FILTRO -->
+  <div class="filtro-card">
+    <input type="text" id="origem" placeholder="Origem (ex: São Paulo)">
+    <input type="text" id="destino" placeholder="Destino (ex: Lisboa)">
+    <select id="ordenar">
+      <option value="">Ordenar por</option>
+      <option value="menor">Menor preço</option>
+      <option value="maior">Maior preço</option>
     </select>
-  </section>
+  </div>
 
-  <main>
-    <div id="ofertas" class="grid"></div>
-  </main>
-
-  <footer>
-    <p>© 2026 — Ofertas de Viagem | Promoções sujeitas a alteração</p>
-  </footer>
+  <!-- OFERTAS -->
+  <div id="ofertas" class="grid"></div>
 
   <script src="script.js"></script>
 </body>
