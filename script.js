@@ -23,10 +23,14 @@ function renderizar(lista) {
       <div class="empresa">${o.empresa}</div>
       <div class="preco-antigo">De R$ ${o.precoAntigo}</div>
       <div class="preco-novo">Por R$ ${o.precoAtual}</div>
-      <a href="${o.link}" target="_blank">Ver oferta</a>
+      <a href="${o.link}" target="_blank" class="btn-oferta">
+        Ver oferta
+      </a>
     `;
 
-    card.addEventListener("click", () => {
+    // 👇 CAPTURA O CLIQUE APENAS NO BOTÃO
+    card.querySelector(".btn-oferta").addEventListener("click", (e) => {
+      e.stopPropagation(); // impede conflito
       ofertaSelecionada = o;
       atualizarWhatsApp();
     });
@@ -87,17 +91,5 @@ Pode me ajudar?
 
 carregarOfertas();
 
-/* POPUP WHATSAPP */
-setTimeout(() => {
-  const popup = document.getElementById("popup");
-  if (popup && !localStorage.getItem("popupFechado")) {
-    popup.style.display = "flex";
-  }
-}, 5000);
-
-function fecharPopup() {
-  document.getElementById("popup").style.display = "none";
-  localStorage.setItem("popupFechado", "true");
-}
 
 
