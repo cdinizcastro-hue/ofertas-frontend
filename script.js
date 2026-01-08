@@ -20,6 +20,11 @@ async function carregarOfertas() {
     card.innerHTML = `
       <div class="imagem-destino">
         <span class="badge-desconto">${desconto}% OFF</span>
+
+        <div class="overlay-destino">
+          <span>${o.destino}</span>
+        </div>
+
         <img src="${imagem}" alt="${o.destino}">
       </div>
 
@@ -41,4 +46,3 @@ async function carregarOfertas() {
 }
 
 carregarOfertas();
-
