@@ -39,41 +39,51 @@ gtag('config', 'G-M23KF473F0');
 
 <body>
 
-  <header class="topo">
-    <h1>✈️ Ofertas de Viagem ✈️</h1>
-    <p>Economize de verdade em passagens e viagens.</p>
+  <header class="hero">
+    <div class="hero-content">
+      <h1>✈️ Ofertas de Viagem Imperdíveis ✈️</h1>
+      <p>Promoções reais em passagens e viagens. Atualizado todos os dias.</p>
+
+      <div class="search-box">
+        <input type="text" id="origem" placeholder="Origem (ex: São Paulo)">
+        <input type="text" id="destino" placeholder="Destino (ex: Lisboa)">
+        <select id="ordenar">
+          <option value="">Ordenar por</option>
+          <option value="menor">Menor preço</option>
+          <option value="maior">Maior preço</option>
+        </select>
+      </div>
+    </div>
   </header>
 
   <main class="container">
+    <h2 class="titulo-secao">🔥 Ofertas em destaque 🔥</h2>
     <div id="ofertas" class="grid"></div>
   </main>
 
-  <!-- BOTÃO WHATSAPP FLUTUANTE (SUPORTE) -->
+  <!-- WHATSAPP -->
   <a
-    href="https://wa.me/5531996988232?text=Olá!%20Quero%20receber%20ofertas%20de%20viagem"
+    href="https://wa.me/5531999999999?text=Olá!%20Quero%20receber%20ofertas%20de%20viagem"
     class="whatsapp-float"
     target="_blank"
-    aria-label="WhatsApp"
   >
     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
   </a>
 
+  <footer class="footer">
+    <p>
+      © 2026 Ofertas de Viagem —
+      <a href="/politica-de-privacidade.html">Política de Privacidade</a> |
+      <a href="/termos.html">Termos de Uso</a> |
+      <a href="/contato.html">Contato</a>
+    </p>
+    <p class="disclaimer">
+      Este site pode receber comissões por reservas feitas através de links afiliados.
+    </p>
+  </footer>
+
   <script src="script.js"></script>
-
-<footer style="text-align:center; padding:30px; color:#6b7280; font-size:14px;">
-  <p>
-    © 2026 Ofertas de Viagem —
-    <a href="politica-de-privacidade.html">Política de Privacidade</a> |
-    <a href="termos.html">Termos de Uso</a> |
-    <a href="contato.html">Contato</a>
-  </p>
-
-  <p>
-    Este site pode receber comissões por reservas realizadas através de links
-    afiliados.
-  </p>
-</footer>
-
 </body>
+
 </html>
 
